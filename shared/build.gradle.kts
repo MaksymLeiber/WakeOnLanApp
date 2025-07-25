@@ -14,6 +14,7 @@ kotlin {
     cocoapods {
         summary = "WakeOnLanApp shared module"
         homepage = "https://github.com/MaksymLeiber/WakeOnLanApp"
+        version = "1.0"
         ios.deploymentTarget = "14.1"
         framework {
             baseName = "sharedKit"
@@ -21,30 +22,24 @@ kotlin {
     }
 
     sourceSets {
-        commonMain {
+        val commonMain by getting {
             dependencies {
                 implementation(libs.kotlin.stdlib)
             }
         }
-        commonTest {
+        val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
             }
         }
-        androidMain {
-            dependencies {
-            }
-        }
-        iosMain {
-            dependencies {
-            }
-        }
+        val androidMain by getting
+        val iosMain by getting
     }
 }
 
 android {
-    compileSdk = 34
     namespace = "com.banny.shared"
+    compileSdk = 34
     defaultConfig {
         minSdk = 24
     }
