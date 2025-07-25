@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.android.kotlin.multiplatform.library)
+    kotlin("multiplatform")
+    id("com.android.library")
 }
 
 kotlin {
@@ -8,20 +8,7 @@ kotlin {
     // Target declarations - add or remove as needed below. These define
     // which platforms this KMP module supports.
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
-    androidLibrary {
-        namespace = "com.banny.shared"
-        compileSdk = 36
-        minSdk = 24
-
-        withHostTestBuilder {
-        }
-
-        withDeviceTestBuilder {
-            sourceSetTreeName = "test"
-        }.configure {
-            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        }
-    }
+    android()
 
     // For iOS targets, this is also where you should
     // configure native binary output. For more information, see:
@@ -32,23 +19,18 @@ kotlin {
     // https://developer.android.com/kotlin/multiplatform/migrate
     val xcfName = "sharedKit"
 
-    iosX64 {
-        binaries.framework {
+    cocoapods {
+        summary = "WakeOnLanApp shared module"
+        homepage = "https://github.com/MaksymLeiber/WakeOnLanApp"
+        ios.deploymentTarget = "14.1"
+        framework {
             baseName = xcfName
         }
     }
 
-    iosArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
-
-    iosSimulatorArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
 
     // Source set declarations.
     // Declaring a target automatically creates a source set with the same name. By default, the
