@@ -40,3 +40,11 @@ kotlin {
         }
     }
 }
+
+android {
+    compileSdk = 34
+    namespace = "com.banny.shared"
+    defaultConfig {
+        minSdk = 24
+    }
+}
