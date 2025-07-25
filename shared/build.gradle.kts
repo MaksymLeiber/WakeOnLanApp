@@ -9,6 +9,7 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
+    jvmToolchain(17)
 
     cocoapods {
         summary = "WakeOnLanApp shared module"
@@ -46,5 +47,9 @@ android {
     namespace = "com.banny.shared"
     defaultConfig {
         minSdk = 24
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
