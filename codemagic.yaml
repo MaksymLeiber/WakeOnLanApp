@@ -3,14 +3,8 @@ workflows:
     name: Build iOS XCFramework
     max_build_duration: 60
     environment:
-      vars:
-        JAVA_HOME: /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
       xcode: latest
     scripts:
-      - name: Set up Java 17
-        script: |
-          export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
-          export PATH=$JAVA_HOME/bin:$PATH
       - name: Build XCFramework
         script: |
           ./gradlew :shared:assembleXCFramework
